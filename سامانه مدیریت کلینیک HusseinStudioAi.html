@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>سامانه مدیریت کلینیک کاشت مو HusseinStudioAi</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f1f6f5;--card:#fff;--ink:#14292a;--mute:#5d7273;--teal:#12474a;--teal2:#1d6b6f;--gold:#b8864b;--line:#d7e2e1;--ok:#1f7a4d;--bad:#b3392f;--hair:#3b2a20;--skin:#f0d9c4;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1a1b;--card:#15292b;--ink:#e6f0ef;--mute:#9ab3b2;--teal:#1d6b6f;--teal2:#46b0b4;--gold:#d4a566;--line:#27403f;--ok:#4cc38a;--bad:#ef7b70;--hair:#d9c3a8;--skin:#3a4a48}}
+:root[data-theme="dark"]{--bg:#0d1a1b;--card:#15292b;--ink:#e6f0ef;--mute:#9ab3b2;--teal:#1d6b6f;--teal2:#46b0b4;--gold:#d4a566;--line:#27403f;--ok:#4cc38a;--bad:#ef7b70;--hair:#d9c3a8;--skin:#3a4a48}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Vazirmatn,Tahoma,sans-serif;line-height:1.8;min-height:100vh}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:#12474a;z-index:30}
+.hide{display:none!important}
+button,input,select,textarea{font:inherit;color:inherit}
+.btn{background:var(--teal);color:#fff;border:0;border-radius:12px;padding:11px 18px;font-weight:600;cursor:pointer;width:100%;transition:transform .15s}
+.btn:active{transform:scale(.97)}
+.btn.alt{background:transparent;color:var(--teal2);border:1.5px solid var(--teal2)}
+.btn.bad{background:transparent;color:var(--bad);border:1.5px solid var(--bad)}
+.btn.sm{width:auto;padding:5px 14px;font-size:.85rem}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+label{display:block;font-size:.88rem;font-weight:600;margin:12px 0 4px}
+input,select,textarea{width:100%;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;background:var(--card)}
+input[type=checkbox]{width:auto}
+.num{direction:ltr;text-align:right}
+.err{color:var(--bad);font-size:.88rem;min-height:1.4em;margin:6px 0}
+.hint{color:var(--mute);font-size:.82rem}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+/* splash */
+#splash{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(160deg,#0c3335,#12474a 60%,#1d6b6f);color:#fff;padding:24px;overflow:hidden;position:relative}
+#splash h1{font-size:2rem;font-weight:800;margin:8px 0 0}
+#splash .en{letter-spacing:.2em;color:#e3c597;font-weight:600;direction:ltr}
+#splash p{opacity:.85;margin:6px 0 22px}
+#splash .btn{max-width:260px;background:#e3c597;color:#12383a}
+.hero{width:min(340px,86vw);height:auto;display:block}
+.hero .sc{fill:var(--skin)}
+.st{fill:none;stroke:var(--hair);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:80;stroke-dashoffset:80;animation:grow 1.6s ease-out forwards;animation-delay:calc(var(--i)*.07s)}
+#splash .st{stroke:#e3c597}
+@keyframes grow{to{stroke-dashoffset:0}}
+.dot{position:absolute;border-radius:50%;background:rgba(227,197,151,.18);animation:fl 7s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-26px)}}
+.pop{animation:pop .7s .9s both}@keyframes pop{from{opacity:0;transform:translateY(14px)}}
+/* auth */
+#auth{max-width:420px;margin:0 auto;padding:22px 18px}
+#auth .hero{margin:0 auto 6px}
+/* app */
+header.top{background:#12474a;color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+header.top small{display:block;opacity:.8;font-size:.75rem;line-height:1.4}
+header.top button{background:rgba(255,255,255,.15);color:#fff;border:0;border-radius:8px;padding:5px 12px;cursor:pointer}
+main{max-width:760px;margin:0 auto;padding:16px 14px 100px}
+.banner{background:linear-gradient(135deg,#12474a,#1d6b6f);color:#fff;border-radius:18px;padding:16px 16px 0;display:flex;align-items:flex-end;justify-content:space-between;gap:8px;overflow:hidden}
+.banner .hero{width:44%;min-width:130px}.banner .st{stroke:#e3c597}
+.banner h2{margin:0 0 14px;font-size:1.15rem}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;text-align:center}
+.stat b{display:block;font-size:1.5rem;color:var(--teal2)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 10px;text-align:center;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;font-weight:600;transition:transform .2s,border-color .2s}
+.tile:hover{transform:translateY(-3px);border-color:var(--gold)}
+.tile svg,.ic{width:32px;height:32px;stroke:var(--gold);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.tile small{color:var(--mute);font-weight:400;font-size:.76rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:12px 0}
+.item{border-bottom:1px solid var(--line);padding:9px 0;display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.item:last-child{border:0}
+.tag{font-size:.75rem;padding:2px 10px;border-radius:99px;background:var(--line);color:var(--mute);white-space:nowrap}
+.tag.ok{background:rgba(31,122,77,.15);color:var(--ok)}.tag.g{background:rgba(184,134,75,.2);color:var(--gold)}
+h3{margin:16px 0 4px}
+.bubble{padding:9px 14px;border-radius:14px;margin:8px 0;background:var(--line);max-width:92%}
+.bubble.me{background:var(--teal);color:#fff;margin-right:auto}
+.perms{display:grid;grid-template-columns:1fr 1fr;gap:4px 10px}
+.perms label{font-weight:400;display:flex;gap:6px;align-items:center;margin:2px 0}
+.avatar{width:38px;height:38px;border-radius:50%;background:var(--line);display:grid;place-items:center;flex:none}
+.avatar svg{width:22px;height:22px;stroke:var(--teal2);fill:none;stroke-width:1.8;stroke-linecap:round}
+nav{position:fixed;bottom:0;inset-inline:0;background:var(--card);border-top:1px solid var(--line);display:flex;overflow-x:auto;padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));z-index:6}
+nav button{flex:0 0 auto;min-width:74px;background:none;border:0;font-size:.72rem;color:var(--mute);cursor:pointer;padding:4px 8px;border-radius:8px}
+nav button.on{color:var(--teal2);font-weight:800}
+#toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:9px 18px;border-radius:99px;font-size:.88rem;z-index:40}
+.row3{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:6px}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.cal b{font-size:.75rem;color:var(--mute)}
+.cd{aspect-ratio:1;border:1px solid var(--line);background:var(--card);border-radius:10px;cursor:pointer;position:relative;padding:0}
+.cd.t{border-color:var(--gold);font-weight:800}.cd.s{background:var(--teal);color:#fff}
+.cd i{position:absolute;bottom:2px;inset-inline:0;font-size:.62rem;color:var(--gold);font-style:normal;line-height:1.2}.cd.s i{color:#fff}
+.mr{margin-top:6px;grid-template-columns:1.3fr 1.5fr .8fr auto}
+@media(max-width:480px){.mr{grid-template-columns:1fr 1fr}}
+.fo{width:100%;max-width:300px;display:block;margin:6px auto}
+@media(prefers-reduced-motion:reduce){.st{animation:none;stroke-dashoffset:0}.dot,.pop{animation:none}}
+</style>
+</head>
+<body>
+<section id="splash">
+ <i class="dot" style="width:90px;height:90px;top:8%;right:10%"></i><i class="dot" style="width:46px;height:46px;top:62%;left:12%;animation-delay:1.5s"></i><i class="dot" style="width:64px;height:64px;bottom:8%;right:22%;animation-delay:3s"></i>
+ <div id="h0"></div>
+ <h1 class="pop">کلینیک زیبایی کاشت مو</h1>
+ <div class="en pop">HUSSEINSTUDIOAI</div>
+ <p class="pop">سامانه مدیریت داخلی کلینیک</p>
+ <button class="btn pop" id="enter">ورود به سامانه</button>
+</section>
+<section id="auth" class="hide"></section>
+<section id="app" class="hide">
+ <header class="top"><div><b>HusseinStudioAi</b><small id="who"></small></div><button data-a="out">خروج</button></header>
+ <main id="view"></main><nav id="nav"></nav>
+</section>
+<div id="toast" class="hide"></div>
+<script>
+(()=>{
+const $=i=>document.getElementById(i),qa=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fa2en=s=>String(s||'').replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).trim();
+const fd=t=>{try{return new Date(t).toLocaleDateString('fa-IR')}catch(e){return ''}};
+let S;try{S=JSON.parse(localStorage.getItem('hs2'))}catch(e){}S=S||{users:[],pts:[],clinic:{}};
+const save=()=>{try{localStorage.setItem('hs2',JSON.stringify(S));return true}catch(e){toast('حافظه دستگاه پر است');return false}};
+const toast=t=>{const e=$('toast');e.textContent=t;e.classList.remove('hide');setTimeout(()=>e.classList.add('hide'),2200)};
+const H=async(p,s)=>{try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s+p));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}catch(e){return s+p}};
+const uid=()=>Math.random().toString(36).slice(2,10);
+const pd=s=>String(s==null?'':s).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
+const toJ=(gy,gm,gd)=>{const gdm=[0,31,59,90,120,151,181,212,243,273,304,334];let jy=gy<=1600?0:979;gy-=gy<=1600?621:1600;const g2=gm>2?gy+1:gy;let days=365*gy+Math.trunc((g2+3)/4)-Math.trunc((g2+99)/100)+Math.trunc((g2+399)/400)-80+gd+gdm[gm-1];jy+=33*Math.trunc(days/12053);days%=12053;jy+=4*Math.trunc(days/1461);days%=1461;if(days>365){jy+=Math.trunc((days-1)/365);days=(days-1)%365}const jm=days<186?1+Math.trunc(days/31):7+Math.trunc((days-186)/30),jd=1+(days<186?days%31:(days-186)%30);return [jy,jm,jd]};
+const toG=(jy,jm,jd)=>{let gy=jy<=979?621:1600;jy-=jy<=979?0:979;let days=365*jy+Math.trunc(jy/33)*8+Math.trunc((jy%33+3)/4)+78+jd+(jm<7?(jm-1)*31:(jm-7)*30+186);gy+=400*Math.trunc(days/146097);days%=146097;if(days>36524){gy+=100*Math.trunc(--days/36524);days%=36524;if(days>=365)days++}gy+=4*Math.trunc(days/1461);days%=1461;if(days>365){gy+=Math.trunc((days-1)/365);days=(days-1)%365}let gd=days+1;const sa=[0,31,(gy%4==0&&gy%100!=0)||gy%400==0?29:28,31,30,31,30,31,31,30,31,30,31];let gm;for(gm=0;gm<13;gm++){if(gd<=sa[gm])break;gd-=sa[gm]}return [gy,gm,gd]};
+const MN=['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
+const p2=n=>String(n).padStart(2,'0'),jstr=(y,m,d)=>y+'/'+p2(m)+'/'+p2(d);
+const nowJ=()=>{const n=new Date();return toJ(n.getFullYear(),n.getMonth()+1,n.getDate())};
+const today=()=>jstr(...nowJ());
+const dim=(y,m)=>m<7?31:m<12?30:(toJ(...toG(y,12,30))[1]===12?30:29);
+const wd=(y,m,d)=>{const g=toG(y,m,d);return (new Date(g[0],g[1]-1,g[2]).getDay()+1)%7};
+const jsel=(id,v)=>{const [y,m,d]=(v||'').split('/').map(Number),c=nowJ()[0];return `<div class="row3" id="${id}"><select aria-label="سال"><option value="">سال</option>${[c-1,c,c+1,c+2,c+3].map(x=>`<option value="${x}"${x===y?' selected':''}>${pd(x)}</option>`).join('')}</select><select aria-label="ماه"><option value="">ماه</option>${MN.map((n,i)=>`<option value="${i+1}"${i+1===m?' selected':''}>${n}</option>`).join('')}</select><select aria-label="روز"><option value="">روز</option>${Array.from({length:31},(_,i)=>`<option value="${i+1}"${i+1===d?' selected':''}>${pd(i+1)}</option>`).join('')}</select></div>`};
+const getJ=id=>{const v=qa('#'+id+' select').map(x=>x.value);if(v.every(x=>!x))return '';if(v.some(x=>!x)||+v[2]>dim(+v[0],+v[1]))return null;return jstr(+v[0],+v[1],+v[2])};
+S.pts.forEach(p=>{p.vs=p.vs||[];p.ap.forEach(a=>{if(/^\d{4}-\d\d-\d\d$/.test(a.d)){const g=a.d.split('-').map(Number);a.d=jstr(...toJ(g[0],g[1],g[2]))}})});
+S.users.forEach(u=>{if(u.doc===undefined)u.doc=!!(u.role&&u.role.includes('پزشک'))});
+
+const show=id=>['splash','auth','app'].forEach(x=>$(x).classList.toggle('hide',x!==id));
+const MODS=[['patients','پرونده بیماران','file','ثبت و مشاهده بیماران'],['appts','نوبت‌دهی','cal','رزرو و تأیید نوبت'],['consult','مشاوره پزشک','doc','یادداشت و پاسخ پزشک'],['visit','ویزیت و نسخه','doc','معاینه، دارو و مراجعه بعدی'],['lab','آزمایشگاه','lab','نتیجه و جوابیه'],['ins','بیمه','ins','اطلاعات بیمه بیمار'],['about','درباره کلینیک','info','معرفی و تماس']];
+const PRESET={'پزشک':['patients','appts','consult','visit','lab','ins','about'],'منشی':['patients','appts','ins','about']};
+const IC={file:'<path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h6M9 17h6"/>',cal:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/>',doc:'<path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/>',lab:'<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M8 15h8"/>',ins:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>',info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/>',users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-4 3-6 6.5-6s6.5 2 6.5 6M16 5a3 3 0 0 1 0 6M18 14c2 .8 3.5 2.6 3.5 6"/>',home:'<path d="M3 11l9-8 9 8v10H3z"/><path d="M10 21v-6h4v6"/>',user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-5 4-7 8-7s8 2 8 7"/>'};
+const ico=n=>`<svg viewBox="0 0 24 24">${IC[n]}</svg>`;
+function hero(){let s='';for(let i=0;i<24;i++){const t=i/23,x=24+272*t,y=(1-t)**2*150+2*(1-t)*t*56+t*t*150,l=26+14*Math.sin(i*1.7)+10*(1-Math.abs(t-.5)*2),w=7*Math.sin(i*2.3);s+=`<path class="st" style="--i:${i}" d="M${x.toFixed(1)} ${y.toFixed(1)} q ${w.toFixed(1)} ${-l/2} ${(w*1.6).toFixed(1)} ${-l}"/>`}
+return `<svg class="hero" viewBox="0 0 320 160" aria-hidden="true"><path class="sc" d="M16 160Q160 40 304 160z"/>${s}</svg>`}
+$('h0').innerHTML=hero();
+let me=null,cur='',tab='dash',eu=null,q='',cy=1405,cm=1,sd='';{const n=nowJ();cy=n[0];cm=n[1];sd=today()}
+const can=m=>me&&(me.admin||(me.perms||[]).includes(m));
+const P=id=>S.pts.find(p=>p.id===id);
+const pName=p=>p?p.fn+' '+p.ln:'—';
+function authHTML(first){return `${hero()}<h2 style="text-align:center;margin:0">${first?'راه‌اندازی اولیه':'ورود کارکنان'}</h2><div class="hint" style="text-align:center">${first?'حساب مدیر کلینیک را بسازید. بعداً پزشکان و منشی‌ها را از پنل مدیریت اضافه می‌کنید.':'با نام کاربری و رمز عبوری که مدیر کلینیک برای شما تعریف کرده وارد شوید.'}</div>${first?'<label for="an">نام و نام خانوادگی مدیر</label><input id="an">':''}<label for="au">نام کاربری</label><input id="au" class="num" autocomplete="username"><label for="ap">رمز عبور${first?' (حداقل ۶ کاراکتر)':''}</label><input id="ap" type="password" class="num" autocomplete="${first?'new-password':'current-password'}"><div class="err" id="ae"></div><button class="btn" data-a="${first?'setup':'login'}">${first?'ایجاد حساب مدیر':'ورود'}</button>`}
+$('enter').onclick=()=>{const s=localStorage.getItem('hs2s'),u=S.users.find(x=>x.id===s&&x.on);if(u){me=u;start()}else{$('auth').innerHTML=authHTML(!S.users.length);show('auth')}};
+function start(){show('app');$('who').textContent=me.name+' · '+me.role;go('dash')}
+function go(t){tab=t;const L=[['dash','خانه']].concat(MODS.filter(m=>can(m[0])).map(m=>[m[0],m[1]]));if(me.admin)L.push(['users','کاربران و دسترسی']);
+$('nav').innerHTML=L.map(x=>`<button data-a="go" data-i="${x[0]}" class="${x[0]===t?'on':''}">${x[1]}</button>`).join('');
+$('view').innerHTML=({dash,patients,appts,consult,visit,lab,ins,about,users})[t]();window.scrollTo(0,0);if(t==='dash')count()}
+function count(){qa('[data-n]').forEach(e=>{const n=+e.dataset.n;let i=0;const t=setInterval(()=>{i+=Math.max(1,Math.ceil(n/20));if(i>=n){i=n;clearInterval(t)}e.textContent=i.toLocaleString('fa-IR')},40)})}
+function dash(){const T=today(),V=vp(),ta=V.reduce((a,p)=>a+p.ap.filter(x=>x.d===T).length,0),pend=V.reduce((a,p)=>a+p.ap.filter(x=>x.st!=='ok').length,0),up=[];V.forEach(p=>p.ap.forEach(a=>{if(a.auto&&a.d>=T)up.push({p,a})}));up.sort((x,y)=>(x.a.d+x.a.t)<(y.a.d+y.a.t)?-1:1);
+return `<div class="banner"><div><h2>سلام ${esc(me.name)}</h2><div class="hint" style="color:#cfe3e1;margin-bottom:14px">${esc(me.role)} · ${pd(T)}</div></div>${hero()}</div>
+<div class="stats"><div class="stat"><b data-n="${V.length}">۰</b><span class="hint">بیمار</span></div><div class="stat"><b data-n="${ta}">۰</b><span class="hint">نوبت امروز</span></div><div class="stat"><b data-n="${pend}">۰</b><span class="hint">منتظر تأیید</span></div></div>
+${can('appts')&&up.length?`<div class="card"><b>مراجعات بعدی تعیین‌شده توسط پزشک</b>${up.slice(0,6).map(x=>`<div class="item"><span>${esc(pName(x.p))} <span class="hint">${esc(x.a.dr)}</span></span><span class="tag g">${pd(x.a.d)} ${pd(x.a.t)}</span></div>`).join('')}</div>`:''}
+<div class="grid">${MODS.filter(m=>can(m[0])).map(m=>`<button class="tile" data-a="go" data-i="${m[0]}">${ico(m[2])}${m[1]}<small>${m[3]}</small></button>`).join('')}${me.admin?`<button class="tile" data-a="go" data-i="users">${ico('users')}کاربران و دسترسی<small>تعریف پزشک، منشی و ...</small></button>`:''}</div>`}
+const vis=p=>me.admin||!me.doc||!p.dr||p.dr===me.id,vp=()=>S.pts.filter(vis),drs=()=>S.users.filter(u=>u.doc&&u.on),drn=id=>(S.users.find(u=>u.id===id)||{}).name||'—';
+const ps=()=>{const V=vp();if(!V.length)return '<div class="card hint">بیماری برای شما ثبت نشده است. منشی باید ابتدا بیمار را در «پرونده بیماران» ثبت و به پزشک ارجاع دهد.</div>';if(!V.some(p=>p.id===cur))cur=V[0].id;return `<label for="ps">بیمار</label><select id="ps" data-ch="ps">${V.map(p=>`<option value="${p.id}"${p.id===cur?' selected':''}>${esc(pName(p))} — ${esc(p.nid)}</option>`).join('')}</select>`};
+function patients(){const t=fa2en(q),L=vp().filter(p=>!t||(p.fn+' '+p.ln+p.nid+p.ph).includes(t));
+return `<h3 style="margin-top:4px">پرونده بیماران</h3><details class="card"><summary><b>ثبت بیمار جدید</b></summary><div class="row"><div><label for="pf">نام</label><input id="pf"></div><div><label for="pl">نام خانوادگی</label><input id="pl"></div></div><label for="pn">شناسه ملی</label><input id="pn" class="num" inputmode="numeric" maxlength="10"><label for="pp">شماره تماس</label><input id="pp" class="num" inputmode="tel" maxlength="11"><label for="pd">پزشک معالج</label><select id="pd"><option value="">بدون پزشک</option>${drs().map(u=>`<option value="${u.id}">${esc(u.name)}</option>`).join('')}</select><div class="err" id="pe"></div><button class="btn" data-a="addp">ثبت بیمار و ارجاع به پزشک</button></details>
+<input id="sq" placeholder="جستجو با نام، شناسه ملی یا شماره تماس" value="${esc(q)}" data-ch="sq">
+${L.length?L.map(p=>`<details class="card"><summary><b>${esc(pName(p))}</b> <span class="hint num">${esc(p.nid)}</span></summary><div class="item"><span class="hint">شماره تماس</span><b>${esc(p.ph)}</b></div><div class="item"><span class="hint">پزشک معالج</span><b>${esc(drn(p.dr))}</b></div><div class="item"><span class="hint">تاریخ ثبت</span><b>${pd(jstr(...toJ(...(d=>[d.getFullYear(),d.getMonth()+1,d.getDate()])(new Date(p.ts)))))}</b></div><div class="item"><span class="hint">بیمه</span><b>${p.ins?esc(p.ins.co):'ثبت نشده'}</b></div><div class="item"><span>نوبت‌ها: <b>${pd(p.ap.length)}</b> · ویزیت‌ها: <b>${pd(p.vs.length)}</b> · فایل‌ها: <b>${pd(p.lb.length)}</b></span>${can('del')?`<button class="btn bad sm" data-a="delp" data-i="${p.id}">حذف پرونده</button>`:''}</div></details>`).join(''):'<div class="card hint">بیماری پیدا نشد.</div>'}`}
+function appts(){const A=[];vp().forEach(p=>p.ap.forEach((a,i)=>A.push({p,a,i})));const cn={};A.forEach(x=>cn[x.a.d]=(cn[x.a.d]||0)+1);
+let g=['ش','ی','د','س','چ','پ','ج'].map(x=>`<b>${x}</b>`).join('')+'<span></span>'.repeat(wd(cy,cm,1));
+for(let d=1;d<=dim(cy,cm);d++){const k=jstr(cy,cm,d);g+=`<button class="cd${k===today()?' t':''}${k===sd?' s':''}" data-a="sd" data-i="${k}" aria-label="${pd(d)} ${MN[cm-1]}">${pd(d)}${cn[k]?`<i>${pd(cn[k])}</i>`:''}</button>`}
+const day=A.filter(x=>x.a.d===sd).sort((x,y)=>x.a.t<y.a.t?-1:1),pp=P(cur),sel=pp?pp.dr:'';
+return `<h3 style="margin-top:4px">تقویم نوبت‌دهی</h3><div class="card"><div class="item" style="border:0"><button class="btn alt sm" data-a="cm" data-i="-1">ماه قبل ›</button><b>${MN[cm-1]} ${pd(cy)}</b><button class="btn alt sm" data-a="cm" data-i="1">‹ ماه بعد</button></div><div class="cal">${g}</div></div>
+<div class="card"><b>نوبت‌های ${pd(sd)}</b>${day.length?day.map(x=>`<div class="item"><div><b>${pd(x.a.t)}</b> · ${esc(pName(x.p))}<div class="hint">${esc(x.a.sv)} · ${esc(x.a.dr)} ${x.a.auto?'<span class="tag g">پیگیری پزشک</span>':''}</div></div><div>${x.a.st==='ok'?'<span class="tag ok">تأیید شده</span>':`<button class="btn sm" data-a="oka" data-i="${x.p.id}|${x.i}">تأیید</button>`} <button class="btn alt sm" data-a="dela" data-i="${x.p.id}|${x.i}">لغو</button></div></div>`).join(''):'<div class="hint">نوبتی برای این روز نیست.</div>'}</div>
+<div class="card"><b>ثبت نوبت برای ${pd(sd)}</b>${ps()}<label for="sv">خدمت</label><select id="sv"><option>ویزیت و مشاوره اولیه</option><option>کاشت مو به روش FIT</option><option>کاشت مو به روش DHI</option><option>کاشت ابرو و ریش</option><option>مزوتراپی و PRP مو</option><option>ویزیت پیگیری</option></select><label for="dr">پزشک</label><select id="dr">${drs().map(u=>`<option value="${u.id}"${u.id===sel?' selected':''}>${esc(u.name)}</option>`).join('')||'<option value="">—</option>'}</select><label for="at">ساعت</label><input type="time" id="at" class="num" value="10:00"><div class="err" id="ae"></div><button class="btn" data-a="adda">ثبت نوبت</button></div>`}
+const medRow=()=>'<div class="mr row3"><input class="mn" placeholder="نام دارو"><input class="mu" placeholder="دوز و نحوه مصرف"><input class="md" placeholder="مدت"><button class="btn bad sm" data-a="rmm" aria-label="حذف دارو">×</button></div>';
+function visit(){const p=P(cur);return `<h3 style="margin-top:4px">ویزیت و نسخه</h3>${ps()}${p?`<div class="card"><b>${esc(pName(p))}</b> <span class="hint num">${esc(p.nid)}</span><label for="vc">شرح حال و معاینه</label><textarea id="vc" rows="3"></textarea><label for="vx">تشخیص</label><input id="vx"><label>داروها و دستورات</label><div id="meds">${medRow()}</div><button class="btn alt sm" style="margin-top:8px" data-a="addm">+ افزودن دارو</button><label>تاریخ مراجعه بعدی (در صورت نیاز)</label>${jsel('nj','')}<label for="nh">ساعت مراجعه</label><input type="time" id="nh" class="num" value="10:00"><div class="hint">با ثبت تاریخ، نوبت در تقویم و داشبورد منشی هم نمایش داده می‌شود.</div><div class="err" id="ve"></div><button class="btn" data-a="savv">ثبت ویزیت</button></div>
+<h3>سوابق ویزیت</h3>${p.vs.length?p.vs.slice().reverse().map(v=>`<div class="card"><b>${esc(v.name)}</b> <span class="hint">${pd(v.j)}</span>${v.cc?`<div>${esc(v.cc)}</div>`:''}${v.dx?`<div class="hint">تشخیص: ${esc(v.dx)}</div>`:''}${v.meds.length?`<ul style="margin:6px 0;padding-inline-start:18px">${v.meds.map(m=>`<li><b>${esc(m.n)}</b> ${esc(m.u)} ${m.d?'· '+esc(m.d):''}</li>`).join('')}</ul>`:''}${v.next?`<span class="tag g">مراجعه بعدی: ${pd(v.next)} ${pd(v.nh)}</span>`:''}</div>`).join(''):'<div class="card hint">هنوز ویزیتی ثبت نشده است.</div>'}`:''}`}
+function consult(){const p=P(cur);return `<h3 style="margin-top:4px">مشاوره پزشک</h3>${ps()}${p?`<div class="card">${p.nt.length?p.nt.map((n,i)=>`<div class="bubble ${n.by===me.id?'me':''}"><b>${esc(n.name)}</b> <span class="hint" style="color:inherit;opacity:.75">${esc(n.role)} · ${fd(n.ts)}</span><div>${esc(n.tx)}</div>${can('del')?`<button class="btn alt sm" style="margin-top:4px" data-a="deln" data-i="${i}">حذف</button>`:''}</div>`).join(''):'<div class="hint">هنوز یادداشتی ثبت نشده است.</div>'}</div><label for="nt">یادداشت یا پاسخ پزشک</label><textarea id="nt" rows="3"></textarea><div class="err" id="ne"></div><button class="btn" data-a="addn">ثبت</button>`:''}`}
+function lab(){const p=P(cur);return `<h3 style="margin-top:4px">آزمایشگاه</h3>${ps()}${p?`<div class="card"><label for="lt">نوع فایل</label><select id="lt"><option>نتیجه آزمایش</option><option>جوابیه پزشک</option></select><label for="ln">عنوان (اختیاری)</label><input id="ln"><label for="lf">فایل (عکس یا PDF، حداکثر ۱٫۵ مگابایت)</label><input type="file" id="lf" accept="image/*,.pdf"><div class="err" id="le"></div><button class="btn" data-a="addl">بارگذاری</button></div><div class="card">${p.lb.length?p.lb.map((f,i)=>`<div class="item"><div><b>${esc(f.title)}</b> <span class="tag ${f.type==='جوابیه پزشک'?'ok':''}">${esc(f.type)}</span><div class="hint">${esc(f.by)} · ${fd(f.ts)}</div></div><div><a class="btn alt sm" style="text-decoration:none;display:inline-block" href="${f.data}" download="${esc(f.name)}">دریافت</a>${can('del')?` <button class="btn bad sm" data-a="dell" data-i="${i}">حذف</button>`:''}</div></div>`).join(''):'<div class="hint">فایلی بارگذاری نشده است.</div>'}</div>`:''}`}
+function ins(){const p=P(cur),i=(p&&p.ins)||{};const v=k=>esc(i[k]||'');return `<h3 style="margin-top:4px">بیمه</h3>${ps()}${p?`<div class="card"><label for="ic">شرکت بیمه</label><select id="ic">${['','تأمین اجتماعی','سلامت','نیروهای مسلح','ایران','آسیا','دانا','البرز','کارآفرین','تکمیلی دیگر','بدون بیمه'].map(o=>`<option value="${o}"${i.co===o?' selected':''}>${o||'انتخاب کنید'}</option>`).join('')}</select><label for="in">شماره بیمه‌نامه / دفترچه</label><input id="in" class="num" value="${v('no')}"><div class="row"><div><label for="it">نوع</label><select id="it"><option${i.ty==='پایه'?' selected':''}>پایه</option><option${i.ty==='تکمیلی'?' selected':''}>تکمیلی</option></select></div><div><label>انقضا</label>${jsel('ix',i.ex)}</div></div><div class="err" id="ie"></div><button class="btn" data-a="savi">ذخیره اطلاعات بیمه</button></div>`:''}`}
+function about(){const c=S.clinic||{};return `<h3 style="margin-top:4px">درباره کلینیک</h3><div class="card"><svg class="fo" viewBox="0 0 200 150" aria-hidden="true"><path d="M0 40h200v110H0z" fill="var(--skin)"/><path d="M0 40h200v14H0z" fill="#e3b98a" opacity=".6"/><g fill="none" stroke="var(--hair)" stroke-width="3" stroke-linecap="round"><path class="st" style="--i:0" d="M100 40V8"/><path class="st" style="--i:2" d="M60 40q-8-14 2-30"/><path class="st" style="--i:3" d="M140 40q8-14-2-30"/></g><path d="M85 54q15 70 30 0z" fill="#a77c52"/><path d="M100 60v52" stroke="#d9b48a" stroke-width="5" stroke-linecap="round"/><circle cx="100" cy="124" r="10" fill="#c9a06f"/></svg><p><b>کلینیک زیبایی کاشت مو HusseinStudioAi</b> با روش‌های نوین کاشت مو، مشاوره تخصصی و پیگیری پس از درمان در کنار بیماران است.</p><div class="item"><span>خدمات</span><span>کاشت مو، ابرو و ریش، PRP و مزوتراپی</span></div><div class="item"><span>تلفن</span><span class="num">${esc(c.ph||'—')}</span></div><div class="item"><span>نشانی</span><span>${esc(c.ad||'—')}</span></div></div>${me.admin?`<div class="card"><b>ویرایش اطلاعات تماس</b><label for="cp">تلفن</label><input id="cp" class="num" value="${esc(c.ph||'')}"><label for="ca">نشانی</label><input id="ca" value="${esc(c.ad||'')}"><button class="btn" style="margin-top:10px" data-a="savc">ذخیره</button></div>`:''}`}
+function users(){const e=eu==='new'?{perms:PRESET['منشی'].slice(),on:true,role:'منشی'}:S.users.find(u=>u.id===eu);
+const form=e?`<div class="card"><b>${eu==='new'?'کاربر جدید':'ویرایش '+esc(e.name)}</b><div class="row"><div><label for="un">نام و نام خانوادگی</label><input id="un" value="${esc(e.name||'')}"></div><div><label for="ur">سمت</label><input id="ur" list="rl" value="${esc(e.role||'')}" data-ch="role"><datalist id="rl"><option>مدیر کلینیک<option>پزشک<option>منشی<option>پرستار<option>مشاور</datalist></div></div><div class="row"><div><label for="uu">نام کاربری</label><input id="uu" class="num" value="${esc(e.un||'')}"></div><div><label for="up">رمز عبور ${eu==='new'?'':'(خالی = بدون تغییر)'}</label><input id="up" type="password" class="num"></div></div>
+<label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="ua"${e.admin?' checked':''}> دسترسی مدیر کل (همه امکانات + مدیریت کاربران)</label><label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="ud"${e.doc?' checked':''}> پزشک (بیماران به او ارجاع می‌شود و می‌تواند ویزیت کند)</label><label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="uo"${e.on!==false?' checked':''}> حساب فعال</label><label>دسترسی به امکانات</label><div class="perms" id="pm">${MODS.map(m=>`<label><input type="checkbox" value="${m[0]}"${(e.perms||[]).includes(m[0])?' checked':''}> ${m[1]}</label>`).join('')}<label><input type="checkbox" value="del"${(e.perms||[]).includes('del')?' checked':''}> حذف اطلاعات</label></div><div class="hint">تغییر سمت به «پزشک» یا «منشی» دسترسی پیش‌فرض آن را اعمال می‌کند؛ بعد از آن می‌توانید دستی تغییر دهید.</div><div class="err" id="ue"></div><div class="row"><button class="btn" data-a="savu">ذخیره</button><button class="btn alt" data-a="cu">انصراف</button></div></div>`:'';
+return `<h3 style="margin-top:4px">کاربران و دسترسی</h3>${form}${e?'':'<button class="btn" data-a="nu">افزودن کاربر</button>'}<div class="card">${S.users.map(u=>`<div class="item"><div style="display:flex;gap:10px;align-items:center"><span class="avatar"><svg viewBox="0 0 24 24">${IC.user}</svg></span><div><b>${esc(u.name)}</b> <span class="tag g">${esc(u.role)}</span> ${u.on?'':'<span class="tag">غیرفعال</span>'}<div class="hint">${esc(u.un)} · ${u.admin?'دسترسی کامل':(u.perms||[]).length+' امکان'}</div></div></div><div><button class="btn alt sm" data-a="eu" data-i="${u.id}">ویرایش</button>${u.id!==me.id?` <button class="btn bad sm" data-a="du" data-i="${u.id}">حذف</button>`:''}</div></div>`).join('')}</div>`}
+const val=id=>($(id)||{}).value||'';
+document.addEventListener('change',e=>{const t=e.target,c=t.dataset.ch;if(!c)return;
+ if(c==='ps'){cur=t.value;go(tab)}
+ if(c==='role'&&PRESET[t.value.trim()]&&eu==='new'){qa('#pm input').forEach(x=>x.checked=PRESET[t.value.trim()].includes(x.value));$('ud').checked=t.value.trim()==='پزشک'}});
+document.addEventListener('input',e=>{if(e.target.dataset.ch==='sq'){q=e.target.value;const pos=e.target.selectionStart;go('patients');const n=$('sq');n.focus();n.setSelectionRange(pos,pos)}});
+document.addEventListener('click',async e=>{const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a,i=b.dataset.i,p=P(cur),er=(id,m)=>{const x=$(id);if(x)x.textContent=m};
+ if(a==='go'){go(i)}
+ else if(a==='out'){localStorage.removeItem('hs2s');me=null;$('auth').innerHTML=authHTML(false);show('auth')}
+ else if(a==='setup'){const n=val('an').trim(),u=val('au').trim().toLowerCase(),pw=val('ap');if(!n||!u){er('ae','نام و نام کاربری را وارد کنید.');return}if(pw.length<6){er('ae','رمز عبور باید حداقل ۶ کاراکتر باشد.');return}
+  const s=uid(),m={id:uid(),name:n,role:'مدیر کلینیک',un:u,salt:s,h:await H(pw,s),admin:true,perms:[],on:true};S.users.push(m);save();me=m;localStorage.setItem('hs2s',m.id);start()}
+ else if(a==='login'){const u=S.users.find(x=>x.un===val('au').trim().toLowerCase());if(!u||u.h!==await H(val('ap'),u.salt)){er('ae','نام کاربری یا رمز عبور درست نیست.');return}if(!u.on){er('ae','این حساب غیرفعال است. با مدیر کلینیک تماس بگیرید.');return}me=u;localStorage.setItem('hs2s',u.id);start()}
+ else if(a==='addp'){if(!can('patients'))return;const f=val('pf').trim(),l=val('pl').trim(),n=fa2en(val('pn')),ph=fa2en(val('pp'));if(!f||!l){er('pe','نام و نام خانوادگی را وارد کنید.');return}if(!/^\d{10}$/.test(n)){er('pe','شناسه ملی باید ۱۰ رقم باشد.');return}if(!/^09\d{9}$/.test(ph)){er('pe','شماره تماس باید ۱۱ رقم و با ۰۹ شروع شود.');return}if(S.pts.some(x=>x.nid===n)){er('pe','این شناسه ملی قبلاً ثبت شده است.');return}
+  S.pts.push({id:uid(),fn:f,ln:l,nid:n,ph,ts:Date.now(),dr:val('pd'),ap:[],nt:[],lb:[],vs:[],ins:null});save();toast('بیمار ثبت و به پزشک ارجاع شد');go('patients')}
+ else if(a==='delp'&&can('del')){S.pts=S.pts.filter(x=>x.id!==i);save();toast('پرونده حذف شد');go('patients')}
+ else if(a==='adda'){if(!p)return;const t=val('at'),di=val('dr');if(!t){er('ae','ساعت را وارد کنید.');return}if(sd<today()){er('ae','تاریخ گذشته را نمی‌توان انتخاب کرد.');return}if(!di&&drs().length){er('ae','پزشک را انتخاب کنید.');return}if(di&&S.pts.some(x=>x.ap.some(y=>y.d===sd&&y.t===t&&y.drid===di))){er('ae','این پزشک در این ساعت نوبت دیگری دارد.');return}p.ap.push({sv:val('sv'),dr:drn(di),drid:di,d:sd,t,st:''});save();toast('نوبت ثبت شد');go('appts')}
+ else if(a==='sd'){sd=i;go('appts')}
+ else if(a==='cm'){cm+=+i;if(cm>12){cm=1;cy++}if(cm<1){cm=12;cy--}go('appts')}
+ else if(a==='addm'){$('meds').insertAdjacentHTML('beforeend',medRow())}
+ else if(a==='rmm'){b.closest('.mr').remove()}
+ else if(a==='savv'){if(!p||!can('visit'))return;const cc=val('vc').trim(),dx=val('vx').trim(),meds=qa('#meds .mr').map(r=>({n:r.querySelector('.mn').value.trim(),u:r.querySelector('.mu').value.trim(),d:r.querySelector('.md').value.trim()})).filter(m=>m.n),nj=getJ('nj');
+  if(!cc&&!dx&&!meds.length){er('ve','حداقل شرح معاینه، تشخیص یا یک دارو را وارد کنید.');return}if(nj===null){er('ve','تاریخ مراجعه بعدی کامل یا معتبر نیست.');return}if(nj&&nj<=today()){er('ve','تاریخ مراجعه بعدی باید بعد از امروز باشد.');return}
+  const v={id:uid(),by:me.id,name:me.name,j:today(),ts:Date.now(),cc,dx,meds,next:nj,nh:nj?(val('nh')||'10:00'):''};p.vs.push(v);
+  if(nj)p.ap.push({sv:'ویزیت پیگیری',dr:me.name,drid:me.id,d:nj,t:v.nh,st:'ok',auto:1,vid:v.id});save();toast(nj?'ویزیت ثبت شد و نوبت بعدی به منشی اطلاع داده شد':'ویزیت ثبت شد');go('visit')}
+ else if(a==='oka'||a==='dela'){const [pid,k]=i.split('|'),x=P(pid);if(a==='oka')x.ap[+k].st='ok';else x.ap.splice(+k,1);save();go('appts')}
+ else if(a==='addn'){const t=val('nt').trim();if(!t){er('ne','متن را بنویسید.');return}p.nt.push({by:me.id,name:me.name,role:me.role,tx:t,ts:Date.now()});save();go('consult')}
+ else if(a==='deln'&&can('del')){p.nt.splice(+i,1);save();go('consult')}
+ else if(a==='addl'){const f=$('lf').files[0];if(!f){er('le','یک فایل انتخاب کنید.');return}if(f.size>1.5*1048576){er('le','حجم فایل بیشتر از ۱٫۵ مگابایت است.');return}const r=new FileReader();r.onload=()=>{p.lb.push({type:val('lt'),title:val('ln').trim()||f.name,name:f.name,data:r.result,by:me.name,ts:Date.now()});if(save()){toast('فایل بارگذاری شد');go('lab')}else p.lb.pop()};r.readAsDataURL(f)}
+ else if(a==='dell'&&can('del')){p.lb.splice(+i,1);save();go('lab')}
+ else if(a==='savi'){if(!val('ic')){er('ie','شرکت بیمه را انتخاب کنید.');return}if(getJ('ix')===null){er('ie','تاریخ انقضا کامل یا معتبر نیست.');return}p.ins={co:val('ic'),no:fa2en(val('in')),ty:val('it'),ex:getJ('ix')||''};save();toast('اطلاعات بیمه ذخیره شد')}
+ else if(a==='savc'&&me.admin){S.clinic={ph:val('cp').trim(),ad:val('ca').trim()};save();toast('ذخیره شد');go('about')}
+ else if(a==='nu'&&me.admin){eu='new';go('users')}
+ else if(a==='eu'&&me.admin){eu=i;go('users')}
+ else if(a==='cu'){eu=null;go('users')}
+ else if(a==='du'&&me.admin){const u=S.users.find(x=>x.id===i);if(u.admin&&S.users.filter(x=>x.admin&&x.on).length<2){toast('حداقل یک مدیر فعال لازم است');return}S.users=S.users.filter(x=>x.id!==i);save();toast('کاربر حذف شد');go('users')}
+ else if(a==='savu'&&me.admin){const n=val('un').trim(),r=val('ur').trim(),u=val('uu').trim().toLowerCase(),pw=val('up'),isN=eu==='new';
+  if(!n||!r||!u){er('ue','نام، سمت و نام کاربری را وارد کنید.');return}if(S.users.some(x=>x.un===u&&x.id!==eu)){er('ue','این نام کاربری قبلاً استفاده شده است.');return}if(isN&&pw.length<6){er('ue','رمز عبور باید حداقل ۶ کاراکتر باشد.');return}if(pw&&pw.length<6){er('ue','رمز عبور باید حداقل ۶ کاراکتر باشد.');return}
+  const t=isN?{id:uid(),salt:uid()}:S.users.find(x=>x.id===eu),adm=$('ua').checked,on=$('uo').checked;
+  if(!isN&&t.admin&&(!adm||!on)&&S.users.filter(x=>x.admin&&x.on).length<2){er('ue','حداقل یک مدیر فعال لازم است.');return}
+  Object.assign(t,{name:n,role:r,un:u,admin:adm,on,doc:$('ud').checked,perms:qa('#pm input:checked').map(x=>x.value)});if(pw)t.h=await H(pw,t.salt);if(isN)S.users.push(t);save();if(t.id===me.id)me=t;eu=null;toast('کاربر ذخیره شد');go('users')}
+});
+})();
+</script>
+</body>
+</html>
